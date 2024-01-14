@@ -1,4 +1,4 @@
-package com.smit.test.models;
+package com.smit.test.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Getter
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class EmployeeModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,9 +22,9 @@ public class Employee {
 
     // Hibernate expects entities to have a no-arg constructor,
     // though it does not necessarily have to be public.
-    private Employee() {}
+    private EmployeeModel() {}
 
-    public Employee(String firstName, String lastName, LocalDate dateOfBirth) {
+    public EmployeeModel(String firstName, String lastName, LocalDate dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
