@@ -12,5 +12,4 @@ public class Health {
     public HealthStatus health() {
         return new HealthStatus("Alive");
     }
-
 }
