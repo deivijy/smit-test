@@ -6,21 +6,21 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("employees")
-public class EmployeeController {
-    private final ContactRepository employeeRepository;
+@RequestMapping("contacts")
+public class ContactController {
+    private final ContactRepository contactRepository;
 
-    public EmployeeController(ContactRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public ContactController(ContactRepository contactRepository) {
+        this.contactRepository = contactRepository;
     }
 
     @GetMapping
     public Iterable<ContactModel> findAllEmployees() {
-        return this.employeeRepository.findAll();
+        return this.contactRepository.findAll();
     }
 
     @PostMapping
-    public ContactModel addOneEmployee(@RequestBody ContactModel employee) {
-        return this.employeeRepository.save(employee);
+    public ContactModel addOneContact(@RequestBody ContactModel contact) {
+        return this.contactRepository.save(contact);
     }
 }

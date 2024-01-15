@@ -1,5 +1,5 @@
 package com.smit.test.repository;
 
-import com.smit.test.model.EmployeeModel;
+import com.smit.test.model.ContactModel;
 
-public interface EmployeeRepository extends CrudRepository<EmployeeModel, Integer> {}
+public interface ContactRepository extends CrudRepository<ContactModel, Integer> {}
