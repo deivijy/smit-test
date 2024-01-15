@@ -1,26 +1,26 @@
 package com.smit.test.controller;
 
-import com.smit.test.model.EmployeeModel;
-import com.smit.test.repository.EmployeeRepository;
+import com.smit.test.model.ContactModel;
+import com.smit.test.repository.ContactRepository;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("employees")
 public class EmployeeController {
-    private final EmployeeRepository employeeRepository;
+    private final ContactRepository employeeRepository;
 
-    public EmployeeController(EmployeeRepository employeeRepository) {
+    public EmployeeController(ContactRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
     @GetMapping
-    public Iterable<EmployeeModel> findAllEmployees() {
+    public Iterable<ContactModel> findAllEmployees() {
         return this.employeeRepository.findAll();
     }
 
     @PostMapping
-    public EmployeeModel addOneEmployee(@RequestBody EmployeeModel employee) {
+    public ContactModel addOneEmployee(@RequestBody ContactModel employee) {
         return this.employeeRepository.save(employee);
     }
 }

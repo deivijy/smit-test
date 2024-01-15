@@ -18,16 +18,19 @@ public class EmployeeModel {
 
     private String lastName;
 
-    private LocalDate dateOfBirth;
+    private String secretCode;
+
+    private String phoneNumber;
 
     // Hibernate expects entities to have a no-arg constructor,
     // though it does not necessarily have to be public.
     private EmployeeModel() {}
 
-    public EmployeeModel(String firstName, String lastName, LocalDate dateOfBirth) {
+    public EmployeeModel(String firstName, String lastName, String secretCode, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
+        this.secretCode = secretCode;
+        this.phoneNumber = phoneNumber;
     }
 
 }
