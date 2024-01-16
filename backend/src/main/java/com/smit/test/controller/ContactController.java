@@ -1,26 +1,35 @@
 package com.smit.test.controller;
 
 import com.smit.test.model.ContactModel;
-import com.smit.test.repository.ContactRepository;
+import com.smit.test.service.ContactService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
 @RequestMapping("contacts")
 public class ContactController {
-    private final ContactRepository contactRepository;
+    private final ContactService contactService;
 
-    public ContactController(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;
+    public ContactController(ContactService contactService) {
+        this.contactService = contactService;
     }
 
     @GetMapping
-    public Iterable<ContactModel> findAllEmployees() {
-        return this.contactRepository.findAll();
+    public Page<ContactModel> findAllContacts(
+            @RequestParam(required = false) String searchQuery,
+            @RequestParam(defaultValue = "firstName") String sortField,
+            @RequestParam(defaultValue = "asc") String sortDirection,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "100") int size) {
+        return contactService.searchAndSortContacts(searchQuery, sortField, sortDirection, page, size);
     }
 
+
     @PostMapping
-    public ContactModel addOneContact(@RequestBody ContactModel contact) {
-        return this.contactRepository.save(contact);
+    public ContactModel addContact(@RequestBody ContactModel contact) {
+        return this.contactService.addContact(contact);
     }
 }
