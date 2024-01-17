@@ -21,10 +21,8 @@ public class ContactService {
         Pageable pageable = PageRequest.of(page, size, sort);
 
         if (searchQuery == null || searchQuery.trim().isEmpty()) {
-            // Return all contacts with sorting and pagination
             return contactRepository.findAll(pageable);
         } else {
-            // Return filtered contacts with sorting and pagination
             return contactRepository.findByFirstNameContainingOrLastNameContainingAllIgnoreCase(
                     searchQuery, searchQuery, pageable);
         }
