@@ -2,9 +2,11 @@ package com.smit.test.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
+@NoArgsConstructor
 @Table(name = "contacts")
 public class ContactModel {
 
@@ -19,16 +21,4 @@ public class ContactModel {
     private String secretCode;
 
     private String phoneNumber;
-
-    // Hibernate expects entities to have a no-arg constructor,
-    // though it does not necessarily have to be public.
-    private ContactModel() {}
-
-    public ContactModel(String firstName, String lastName, String secretCode, String phoneNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.secretCode = secretCode;
-        this.phoneNumber = phoneNumber;
-    }
-
 }

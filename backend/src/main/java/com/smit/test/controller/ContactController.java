@@ -1,12 +1,11 @@
 package com.smit.test.controller;
 
+import com.smit.test.dto.ErrorResponse;
 import com.smit.test.model.ContactModel;
 import com.smit.test.service.ContactService;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
 
 @RestController
 @RequestMapping("contacts")
@@ -27,9 +26,15 @@ public class ContactController {
         return contactService.searchAndSortContacts(searchQuery, sortField, sortDirection, page, size);
     }
 
-
     @PostMapping
-    public ContactModel addContact(@RequestBody ContactModel contact) {
-        return this.contactService.addContact(contact);
+    public ResponseEntity<?> addContact(@RequestBody ContactModel contact) {
+        String phoneNumber = contact.getPhoneNumber();
+        if (!phoneNumber.matches("[+\\d]+")) {
+            ErrorResponse errorResponse = new ErrorResponse("Phone number must contain only numeric characters");
+            return ResponseEntity.badRequest().body(errorResponse);
+        }
+
+        ContactModel addedContact = this.contactService.addContact(contact);
+        return ResponseEntity.ok(addedContact);
     }
 }
