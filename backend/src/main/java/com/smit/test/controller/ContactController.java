@@ -29,8 +29,8 @@ public class ContactController {
     @PostMapping
     public ResponseEntity<?> addContact(@RequestBody ContactModel contact) {
         String phoneNumber = contact.getPhoneNumber();
-        if (!phoneNumber.matches("[+\\d]+")) {
-            ErrorResponse errorResponse = new ErrorResponse("Phone number must contain only numeric characters");
+        if (!phoneNumber.matches("[+\\d\\s\\-()]+")) {
+            ErrorResponse errorResponse = new ErrorResponse("You must enter a real phone number");
             return ResponseEntity.badRequest().body(errorResponse);
         }
 
