@@ -9,12 +9,10 @@ services:
       - 'POSTGRES_USER=myuser'
     ports:
       - '5432:5432'
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
   app:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     environment:
       - DB_HOST=postgres
@@ -27,5 +25,9 @@ services:
     ports:
       - '8080:8080'
 
-volumes:
-  postgres_data:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - '8081:80'
